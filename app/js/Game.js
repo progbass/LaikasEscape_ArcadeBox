@@ -326,15 +326,6 @@ define(['underscore', 'backbone', 'io', 'Alien', 'Astronaut', 'ScoreDisplay', 'L
 			var hole5_mask = new createjs.Shape(hole5_g);
 			this.holes_masks.push(hole0_mask, hole1_mask, hole2_mask, hole3_mask, hole4_mask, hole5_mask );
 			
-			for(var i =0; i<6; i++){
-				var item = this.holes_masks[i];
-				//item.scaleX = item.scaleY = this.pixelRatio;
-				//item.x = 4;
-				//item.y = -3;
-				//this.stage.addChild(item)
-				//item.alpha = .4
-			}
-			
 			
 			
 			//Score display
@@ -704,9 +695,9 @@ define(['underscore', 'backbone', 'io', 'Alien', 'Astronaut', 'ScoreDisplay', 'L
 			
 			//update config
 			this.level++;
-			this.enemies_int_min -= 120;
-			this.enemies_int_max -= 200;
-			this.astronaut_int_min -= 100;
+			this.enemies_int_min -= 200;
+			this.enemies_int_max -= 120;
+			this.astronaut_int_min -= 240;
 			this.astronaut_int_max -= 120;
 			
 			//simultaneous enemies
@@ -997,8 +988,8 @@ define(['underscore', 'backbone', 'io', 'Alien', 'Astronaut', 'ScoreDisplay', 'L
 			enemy.on( 'miss', function(){
 				
 				//update life line
-				scope.life_bar.speedEnemy(5);
-				scope.life_bar.slowHero(3);
+				scope.life_bar.speedEnemy(3);
+				scope.life_bar.slowHero(1);
 
 
 				// remove from enemies index
@@ -1104,7 +1095,7 @@ define(['underscore', 'backbone', 'io', 'Alien', 'Astronaut', 'ScoreDisplay', 'L
 				var tickerTime = createjs.Ticker.getTime(true);
 				
 				//ENEMIES
-				if( this.enemies_nextTime < tickerTime ){
+				if( tickerTime >= this.enemies_nextTime ){
 					this.enemies_nextTime = tickerTime + (this.getRandomInt(this.enemies_int_min, this.enemies_int_max));
 					
 					var enemies_number = 1 + Math.round( Math.random() * this.enemies_simultaneous );
@@ -1114,7 +1105,7 @@ define(['underscore', 'backbone', 'io', 'Alien', 'Astronaut', 'ScoreDisplay', 'L
 				}
 				
 				//ASTRONAUT
-				if( this.astronaut_nextTime < tickerTime && this.astronaut_generate){
+				if( tickerTime >= this.astronaut_nextTime && this.astronaut_generate){
 					this.astronaut_nextTime = tickerTime + (this.getRandomInt(this.astronaut_int_min, this.astronaut_int_max));
 					this.astronaut_generate = false;
 					

@@ -120,7 +120,7 @@ define(['jquery', 'easel', 'tween', 'preload'], function($){
 			var scope = this;
 			
 			scope.astronaut_line.x += .6;
-			scope.enemy_line.x += .8;
+			scope.enemy_line.x += .3;
 			
 			this.icon_heroe.x = this.astronaut_line.x + this.width;
 			this.icon_enemy.x = this.enemy_line.x + this.width;

@@ -36,8 +36,8 @@ define(['easel', 'tween', 'sound', 'preload'], function(){
 		score_value: 5,
 		score_miss: 3,
 		
-		delay_min: 400,
-		delay_max: 840,
+		delay_min: 200,
+		delay_max: 700,
 		
 		//fx
 		fx_sounds: [],
@@ -182,7 +182,7 @@ define(['easel', 'tween', 'sound', 'preload'], function(){
 			
 			//animate
 			this.tween = new createjs.Tween(this.sprite)
-			.to({y: this.positions[this.hole].y, scaleX: this.dimensions[this.hole].xScale, scaleY: this.dimensions[this.hole].yScale }, 240, createjs.Ease.quartOut)
+			.to({y: this.positions[this.hole].y, scaleX: this.dimensions[this.hole].xScale, scaleY: this.dimensions[this.hole].yScale }, 180, createjs.Ease.quartOut)
 			.wait(  scope.getRandomInt( scope.delay_min, scope.delay_max ) )
 			.call(this.hide, null, this)
 		},
@@ -210,7 +210,7 @@ define(['easel', 'tween', 'sound', 'preload'], function(){
 			//enemy animation
 			createjs.Tween.get(this.sprite, {override:true})
 			.wait(300)
-			.to({scaleX: this.sprite.scaleX + .1, scaleY: this.sprite.scaleY + .1, alpha: 0 }, 180, createjs.Ease.quartIn )
+			.to({scaleX: this.sprite.scaleX + .1, scaleY: this.sprite.scaleY + .1, alpha: 0 }, 220, createjs.Ease.quartIn )
 			.call(this.removeEnemy, null, this);
 			
 			//blood animation
@@ -224,7 +224,7 @@ define(['easel', 'tween', 'sound', 'preload'], function(){
 			
 			//hide
 			this.tween = new createjs.Tween(this.sprite, {override:true})
-			.to({y: tempY }, 280, createjs.Ease.backIn).call(function(){
+			.to({y: tempY }, 200, createjs.Ease.backIn).call(function(){
 				//dispatch event
 				scope.removeEnemy();
 			});	
