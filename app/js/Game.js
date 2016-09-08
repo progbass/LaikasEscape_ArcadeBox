@@ -80,8 +80,10 @@ define(['underscore', 'backbone', 'io', 'Alien', 'Astronaut', 'ScoreDisplay', 'L
 		// astronaut variables
 		astronaut: null,
 		astronaut_generate: true,
-		astronaut_int_min: 1800,
-		astronaut_int_max: 3500,
+		astronaut_int_min: 0,
+		astronaut_int_max: 0,
+		astronaut_int_min_default: 1800,
+		astronaut_int_max_default: 3500,
 		astronaut_nextTime: 0,
 		
 		// game variables
@@ -754,6 +756,8 @@ define(['underscore', 'backbone', 'io', 'Alien', 'Astronaut', 'ScoreDisplay', 'L
 			this.enemies_simultaneous = 0;
 			this.enemies_nextTime = 0;
 			this.astronaut_nextTime = 0;
+			this.astronaut_int_min = this.astronaut_int_min_default;
+			this.astronaut_int_max = this.astronaut_int_max_default;
 			this.level = 1;
 			this.score_display.reset();
 			
@@ -767,7 +771,7 @@ define(['underscore', 'backbone', 'io', 'Alien', 'Astronaut', 'ScoreDisplay', 'L
 			var freeHoles = [];
 			
 			//build an array of free holes
-			for(var i = 0; i < scope.holes_number; i++){
+			for(var i = 0; i < scope.holes_number-1; i++){
 				if(scope.holes_used.indexOf(i) === -1){
 					freeHoles.push(i);
 				}
