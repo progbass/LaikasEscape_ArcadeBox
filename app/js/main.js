@@ -57,9 +57,9 @@ requirejs.config({
         "Game": "Game",
         "Alien": "Alien",
         "Astronaut": "Astronaut",
-        "ScoreDisplay": "min/ScoreDisplay",
-        "LifeBar": "min/LifeBar",
-        "ModalWindow": "min/ModalWindow"
+        "ScoreDisplay": "ScoreDisplay",
+        "LifeBar": "LifeBar",
+        "ModalWindow": "ModalWindow"
 
     }
 });
@@ -184,12 +184,17 @@ define(['jquery', 'underscore', 'backbone', 'Game', 'fastclick', 'io'], function
 			
 			
 		if(!mobileAndTabletcheck()){
-			
 			//
 			width = contextWidth;
 			width = contextWidth > maxWidth ? maxWidth : width;
 			ratio = refHeight / refWidth;
 			height = width * ratio;
+			
+			if(actualRatio < refRatio){
+				height = contextHeight;
+				ratio = refWidth / refHeight;
+				width = height * ratio;
+			}
 			
 			
 		///
@@ -198,7 +203,7 @@ define(['jquery', 'underscore', 'backbone', 'Game', 'fastclick', 'io'], function
 			ratio = refHeight / refWidth;
 			height = width * ratio;
 			
-			if(actualRatio > refRatio){
+			if(actualRatio < refRatio){
 				height = contextHeight;
 				ratio = refWidth / refHeight;
 				width = height * ratio;
@@ -207,7 +212,7 @@ define(['jquery', 'underscore', 'backbone', 'Game', 'fastclick', 'io'], function
 		
 		
 		//////
-		var ctx = canvas.getContext("2d");
+		var ctx = canvas.getContext('2d');
 		var devicePixelRatio = window.devicePixelRatio || 1;
 		var backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
 	                    		ctx.mozBackingStorePixelRatio ||
@@ -231,13 +236,13 @@ define(['jquery', 'underscore', 'backbone', 'Game', 'fastclick', 'io'], function
 		
 		//Position developer link
 		if(mobileAndTabletcheck()){
-			var link = document.getElementById("developer");
+			var link = document.getElementById('developer');
 			if(actualRatio > refRatio){
-				link.style.top = (contextHeight - 18)+"px";
+				link.style.top = (contextHeight - 18)+'px';
 			} else{
 				var holder = document.getElementById('main_holder');
 				var offset = contextHeight - holder.offsetHeight;
-				link.style.top = (holder.offsetHeight+(offset/2))-5+"px";
+				link.style.top = (holder.offsetHeight+(offset/2))-5+'px';
 				console.log(offset)
 			}
 		}
@@ -251,8 +256,8 @@ define(['jquery', 'underscore', 'backbone', 'Game', 'fastclick', 'io'], function
 		var moonRatio = moonWidth/moonHeight;
 		var moonNewWidth = (moonWidth * widthPercent);
 		var moonNewHeight = moonNewWidth / moonRatio;
-		document.getElementById("moon_background").style.backgroundSize = moonNewWidth+"px "+moonNewHeight+"px";
-		document.getElementById("moon_background").style.backgroundPosition = "center 0px";
+		document.getElementById('moon_background').style.backgroundSize = moonNewWidth+'px '+moonNewHeight+'px';
+		document.getElementById('moon_background').style.backgroundPosition = 'center 0px';
 	}
 });
 

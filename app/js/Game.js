@@ -988,7 +988,7 @@ define(['underscore', 'backbone', 'io', 'Alien', 'Astronaut', 'ScoreDisplay', 'L
 			enemy.on( 'miss', function(){
 				
 				//update life line
-				scope.life_bar.speedEnemy(3);
+				scope.life_bar.speedEnemy(4);
 				scope.life_bar.slowHero(1);
 
 
