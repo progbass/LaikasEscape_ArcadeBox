@@ -80,7 +80,8 @@ textarea {
 html {
   background: #cfdff3 url("../img/bg_stars.gif") repeat-x center top;
   background-size: contain;
-  height: 100%; }
+  height: 100%;
+  overflow: hidden; }
 
 body {
   margin: 0;
@@ -367,3 +368,5 @@ body {
   h2,
   h3 {
     page-break-after: avoid; } }
+
+/*# sourceMappingURL=main.css.map */
